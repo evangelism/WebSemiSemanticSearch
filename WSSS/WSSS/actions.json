@@ -1,0 +1,14 @@
+﻿{
+  "actions": [
+    {
+      "intent": "AllPhones",
+      "text": "Show all phone models",
+      "redirect": "https://etisalat.ae/en/consumer/mobile/mobile-devices/smartphones.jsp"
+    },
+    {
+      "intent": "AllPlans",
+      "text": "Show all mobile plans",
+      "redirect": "https://etisalat.ae/en/consumer/mobile/mobile_plans.jsp"
+    }
+  ]
+}

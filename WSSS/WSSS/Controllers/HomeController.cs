@@ -25,6 +25,10 @@ namespace WSSS.Controllers
             var s = Request.Url + "api/search?q=";
             var ress = await http.GetStringAsync(s + HttpUtility.UrlEncode(Q));
             var res = JsonConvert.DeserializeObject<SearchResult[]>(ress);
+            if (res.Length==1 && res[0].AutoRedirect)
+            {
+                return Redirect(res[0].Url);
+            }
             return View(new SearchModel() { Results = res });
         }
 

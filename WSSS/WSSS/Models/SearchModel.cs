@@ -16,6 +16,14 @@ namespace WSSS.Models
         {
         }
 
+        // Return search result that does redirect
+        public SearchResult(string text, string url, bool auto = true)
+        {
+            this.Url = url;
+            this.Text = text;
+            this.AutoRedirect = auto;
+        }
+
         public SearchResult(WebPage x)
         {
             Url = x.url;
