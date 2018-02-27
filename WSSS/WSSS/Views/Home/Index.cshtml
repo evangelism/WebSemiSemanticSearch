@@ -3,6 +3,15 @@
 }
 
 <h1>Web Semantic Search</h1>
+@if (Model?.Results != null)
+{
+    foreach (var x in Model?.Results)
+    {
+    <p>
+        <a href="@x.Url"><b>@x.Text</b></a>
+        <div style="font-size: 9px">@x.Description</div>
+    </p>
+    }}
 <form method="post">
     @Html.TextBox("Q")
     <input type="submit"/>

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using WSSS.Models;
 
 namespace WSSS.Controllers
 {
@@ -15,9 +19,13 @@ namespace WSSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string Q)
+        public async Task<ActionResult> Index(string Q)
         {
-            return View();
+            var http = new HttpClient();
+            var s = Request.Url + "api/search?q=";
+            var ress = await http.GetStringAsync(s + HttpUtility.UrlEncode(Q));
+            var res = JsonConvert.DeserializeObject<SearchResult[]>(ress);
+            return View(new SearchModel() { Results = res });
         }
 
         public ActionResult About()

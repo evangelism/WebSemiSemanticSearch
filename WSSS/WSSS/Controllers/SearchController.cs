@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using WSSS.Models;
 
 namespace WSSS.Controllers
 {
@@ -18,9 +20,12 @@ namespace WSSS.Controllers
         */
 
         // GET api/<controller>/<search term>
-        public string Get(string q)
+        public async Task<SearchResult[]> Get(string q)
         {
-            return "Hello";
+            var CSearch = new BingCustomSearch(Config.CustomSearchKey, Config.CustomSearchID);
+            var res = await CSearch.Search(q);
+            return (from x in res.webPages.value
+                    select new SearchResult(x)).ToArray();
         }
         
         /*
