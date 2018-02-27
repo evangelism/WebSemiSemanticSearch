@@ -1,5 +1,5 @@
-id,type,brand,model,price,sim_type,storage,ram,size,front_cam,back_cam,description,battery
-1,Smartphones,Samsung,Galaxy S9+,3332,Nano SIM (Dual SIM),64,6,6.2,8MP front facing,12MP+12 Dual rear facing,ay klam,3500 mAh
-2,Smartphones,Samsung,Galaxy S9,2951,Nano SIM (Dual SIM),64,4,5.8,8MP front facing,12MP rear facing,,3000 mAh
-3,Smartphones,Samsung,Galaxy A8+,1999,Nano SIM (Dual SIM),64,6,6,8MP front facing,16MP rear facing,"Face Detection, Fingerprint Sensor",3500 mAh
-4,Smartphones,Apple,iPhone X,3769,Nano SIM,64,3,5.8,7MP TrueDepth,"12MP dual cameras with dual optical image stabilization, Portrait mode, Portrait Lighting",Face ID for secure authentication,2716 mAh
+PartitionKey,RowKey,type,brand,model,price,sim_type,storage,ram,size,front_cam,back_cam,description,battery
+main,1,Smartphones,Samsung,Galaxy S9+,3332,Nano SIM (Dual SIM),64,6,6.2,8MP front facing,12MP+12 Dual rear facing,ay klam,3500 mAh
+main,2,Smartphones,Samsung,Galaxy S9,2951,Nano SIM (Dual SIM),64,4,5.8,8MP front facing,12MP rear facing,,3000 mAh
+main,3,Smartphones,Samsung,Galaxy A8+,1999,Nano SIM (Dual SIM),64,6,6,8MP front facing,16MP rear facing,"Face Detection, Fingerprint Sensor",3500 mAh
+main,4,Smartphones,Apple,iPhone X,3769,Nano SIM,64,3,5.8,7MP TrueDepth,"12MP dual cameras with dual optical image stabilization, Portrait mode, Portrait Lighting",Face ID for secure authentication,2716 mAh

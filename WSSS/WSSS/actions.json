@@ -9,6 +9,19 @@
       "intent": "AllPlans",
       "text": "Show all mobile plans",
       "redirect": "https://etisalat.ae/en/consumer/mobile/mobile_plans.jsp"
+    },
+    {
+      "intent": "ListModels",
+      "search": [
+        {
+          "entity": "brand",
+          "field": "brand"
+        },
+        {
+          "entity": "device::",
+          "field": "model"
+        }
+      ]
     }
   ]
 }

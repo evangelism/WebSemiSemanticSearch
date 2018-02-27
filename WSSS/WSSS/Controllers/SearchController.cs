@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -33,11 +34,44 @@ namespace WSSS.Controllers
                 var fn = HttpContext.Current.Server.MapPath("../actions.json");
                 var s = File.ReadAllText(fn);
                 dynamic A = JsonConvert.DeserializeObject(s);
-                foreach(dynamic x in A.actions)
+                foreach (dynamic x in A.actions)
                 {
                     if (x.intent == lr.TopScoringIntent.Name)
                     {
-                        return (new SearchResult(x.text.ToString(),x.redirect.ToString())).AsArray();
+                        if (Utils.PropertyExists(x, "redirect"))
+                        {
+                            return (new SearchResult(x.text.ToString(), x.redirect.ToString())).AsArray();
+                        }
+                        if (Utils.PropertyExists(x, "search"))
+                        {
+                            var sb = new StringBuilder();
+                            int cnt = 0;
+                            foreach (dynamic t in x.search)
+                            {
+                                var v = LookupEntity(lr.Entities, t.entity.ToString());
+                                if (v != "")
+                                {
+                                    if (cnt++ > 0) sb.Append(" and ");
+                                    sb.Append($"{t.field} eq '{v}'"); // TODO: Add UrlEncode here
+                                }
+                            }
+                            if (cnt > 0)
+                            {
+                                var AzS = new AzSearch(Config.AzSearchUrl, Config.AzSearchKey);
+                                dynamic rres = await AzS.Search("azuretable-index", sb.ToString());
+                                var l = new List<SearchResult>();
+                                foreach (var o in rres)
+                                {
+                                    l.Add(new SearchResult()
+                                    {
+                                        Text = $"{o.brand} - {o.model}",
+                                        Url = "",
+                                        Description = Utils.BuildDesc(o, new[] { "Storage", "Battery", "sim_type", "front_cam", "back_cam" })
+                                    });
+                                }
+                                return l.ToArray();
+                            } // otherwise fallback to bing search
+                        }
                     }
                 }
             }
@@ -46,7 +80,19 @@ namespace WSSS.Controllers
             return (from x in res.webPages.value
                     select new SearchResult(x)).ToArray();
         }
-        
+
+        private string LookupEntity(IDictionary<string, IList<Entity>> entities, string z)
+        {
+            foreach(var x in entities.Keys)
+            {
+                if (x.ToLower()==z.ToLower() || (x.ToLower().StartsWith(z.ToLower())))
+                {
+                    return entities[x][0].Value;
+                }
+            }
+            return "";
+        }
+
         /*
         // POST api/<controller>
         public void Post([FromBody]string value)
