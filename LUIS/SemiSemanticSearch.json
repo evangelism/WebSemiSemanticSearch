@@ -1,0 +1,202 @@
+{
+  "luis_schema_version": "2.1.0",
+  "versionId": "0.1",
+  "name": "SemiSemanticSearch",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "AllPhones"
+    },
+    {
+      "name": "AllPlans"
+    },
+    {
+      "name": "ListModels"
+    },
+    {
+      "name": "None"
+    }
+  ],
+  "entities": [
+    {
+      "name": "brand"
+    },
+    {
+      "name": "pricecategory"
+    },
+    {
+      "name": "device",
+      "children": [
+        "accessory",
+        "phone",
+        "tablet"
+      ]
+    },
+    {
+      "name": "plan",
+      "children": [
+        "data",
+        "prepaid",
+        "postpaid",
+        "roaming"
+      ]
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "i need a phone",
+      "intent": "AllPhones",
+      "entities": []
+    },
+    {
+      "text": "i need to buy samsung galaxy",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "brand",
+          "startPos": 14,
+          "endPos": 20
+        },
+        {
+          "entity": "device::phone",
+          "startPos": 22,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "i want a phone",
+      "intent": "AllPhones",
+      "entities": []
+    },
+    {
+      "text": "i want a tariff plan",
+      "intent": "AllPlans",
+      "entities": []
+    },
+    {
+      "text": "i want samsung galaxy phone",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "brand",
+          "startPos": 7,
+          "endPos": 13
+        },
+        {
+          "entity": "device::phone",
+          "startPos": 15,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "i want samsung phone",
+      "intent": "AllPhones",
+      "entities": [
+        {
+          "entity": "brand",
+          "startPos": 7,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "i want to buy a phone",
+      "intent": "AllPhones",
+      "entities": []
+    },
+    {
+      "text": "i want to buy an iphone",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "device::phone",
+          "startPos": 17,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "i want to buy samsung galaxy phone",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "brand",
+          "startPos": 14,
+          "endPos": 20
+        },
+        {
+          "entity": "device::phone",
+          "startPos": 22,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "i want to buy samsung phone",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "brand",
+          "startPos": 14,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "show me phone models",
+      "intent": "AllPhones",
+      "entities": []
+    },
+    {
+      "text": "what is the price for apple ipad",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "brand",
+          "startPos": 22,
+          "endPos": 26
+        },
+        {
+          "entity": "device::tablet",
+          "startPos": 28,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "what is the price for iphone",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "device::phone",
+          "startPos": 22,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "what is the price of samsung galaxy",
+      "intent": "ListModels",
+      "entities": [
+        {
+          "entity": "brand",
+          "startPos": 21,
+          "endPos": 27
+        },
+        {
+          "entity": "device::phone",
+          "startPos": 29,
+          "endPos": 34
+        }
+      ]
+    }
+  ]
+}
